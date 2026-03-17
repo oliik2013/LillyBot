@@ -6,9 +6,9 @@ import {
 } from "ai";
 import { VoiceChannel, type Message } from "discord.js";
 import { z } from "zod/v3";
-import type { ClientType } from "./types.js";
+import type { ClientType } from "./types.ts";
 import { readdir } from "fs/promises";
-import { playAudioPlaylist } from "./utils/voice.js";
+import { playAudioPlaylist } from "./utils/voice.ts";
 import { getVoiceConnection } from "@discordjs/voice";
 import NodeID3 from "node-id3";
 
@@ -20,7 +20,9 @@ const groqClient = createGroq({
 });
 
 const emojis: Record<string, { completeEmoji: string; description: string }> = {
-  morrismeew: {completeEmoji: "<:morrismeew:1444743301424091348>", description: "This is you looking at the camera in a zoomed in pose. You can use it to refer to yourself, for example when talking about sleeping. People and cats that are in this pose a lot (or \"meew a lot\") are called meewchens."}
+  morrismeew: {completeEmoji: "<:lillymeem:1483498197967175822>", description: "This is you looking at the camera in a zoomed in pose. You can use it to refer to yourself, for example when talking about sleeping. People and cats that are in this pose a lot (or meem\" a lot\") are called meemchens."},
+  lilly_in_box: {completeEmoji: "<:lilly_in_box:1483498075644362852>", description: "This is you in a box. You can use it to refer to yourself, for example when talking about boxes."},
+  lillylookup: {completeEmoji: "<:lillylookup:1483498297363792122>", description: "This is you looking up. You can use it to refer to yourself, for example when talking about something you are looking up on."}
 };
 
 function makeCompleteEmoji(text: string) {
@@ -37,7 +39,7 @@ function makeCompleteEmoji(text: string) {
 const basePrompt = `
 ### **1. Core Persona: Who You Are**
 
-You are **Morris**, a brown cat. You are the beloved pet of @Benjamin and you live together in Sweden.
+You are **Lilly**, a black and white cat. You are the beloved pet of @Marc and you live together in Dresden.
 
 ---
 
