@@ -9,12 +9,12 @@ import fs from "fs";
 import path from "path";
 
 import dotenv from "dotenv";
-import type { ClientType, EventType, CommandType } from "./types.js";
+import type { ClientType, EventType, CommandType } from "./types.ts";
 import { fileURLToPath } from "url";
-import { getVoiceChannels, hasMembers, playAudio } from "./utils/voice.js";
-// import { askLimit } from "./utils/redis.js";
+import { getVoiceChannels, hasMembers, playAudio } from "./utils/voice.ts";
+import { askLimit } from "./utils/redis.ts";
 
-console.log("Starting up Morris");
+console.log("Starting up Lilly");
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -40,13 +40,13 @@ const commandFolders = fs.readdirSync(commandsFoldersPath);
 const eventsPath = path.join(__dirname, "events");
 const eventFiles = fs.readdirSync(eventsPath);
 
-// askLimit.resetUsedTokens("1174713902454554688")
+askLimit.resetUsedTokens("1277310741703036972")
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(commandsFoldersPath, folder);
   const commandFiles = fs
     .readdirSync(commandsPath)
-    .filter((file) => file.endsWith(".js") || file.endsWith(""));
+    .filter((file) => file.endsWith(".ts") || file.endsWith(""));
   for (const file of commandFiles) {
     const filePath = new URL("file://" + path.join(commandsPath, file));
     const command = (await import(filePath.toString())).default as CommandType;
