@@ -2,12 +2,12 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("morris")
-    .setDescription("Sends a random image of Morris"),
+    .setName("lilly")
+    .setDescription("Sends a random image of Lilly"),
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();
     const imageResponse = await fetch(
-      "https://morrisapi.starnumber12046.workers.dev/morris"
+      "https://lillyapi-cat-api.sigmatwojastara.workers.dev/raw"
     );
     const imageData = Buffer.from(await imageResponse.arrayBuffer());
     console.log(imageData.length);
